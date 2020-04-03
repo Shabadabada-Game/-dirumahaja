@@ -517,6 +517,10 @@
         {
           "name": "Hp",
           "value": "100"
+        },
+        {
+          "name": "totalCoin",
+          "value": "0"
         }
       ],
       "instances": [
@@ -3460,6 +3464,43 @@
             {
               "type": {
                 "inverted": false,
+                "value": "LireFichierExp"
+              },
+              "parameters": [
+                "\"saves\"",
+                "\"totalCoin\"",
+                "",
+                "totalCoin"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "totalCoin",
+                "+",
+                "Variable(Score)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "EcrireFichierExp"
+              },
+              "parameters": [
+                "\"saves\"",
+                "\"totalCoin\"",
+                "Variable(totalCoin)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
                 "value": "Scene"
               },
               "parameters": [
@@ -3763,23 +3804,13 @@
           ]
         }
       ],
-      "variables": [],
-      "instances": [
+      "variables": [
         {
-          "angle": 0,
-          "customSize": false,
-          "height": 0,
-          "layer": "",
-          "locked": false,
-          "name": "NewObject",
-          "width": 0,
-          "x": 105,
-          "y": 161,
-          "zOrder": 1,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
+          "name": "Coin",
+          "value": ""
+        }
+      ],
+      "instances": [
         {
           "angle": 0,
           "customSize": false,
@@ -3806,6 +3837,21 @@
           "x": 258,
           "y": 135,
           "zOrder": 3,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "layer": "",
+          "locked": false,
+          "name": "Coin",
+          "width": 0,
+          "x": 149,
+          "y": 101,
+          "zOrder": 4,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -3849,9 +3895,74 @@
             "g": 0,
             "r": 0
           }
+        },
+        {
+          "bold": false,
+          "italic": false,
+          "name": "Coin",
+          "smoothed": true,
+          "tags": "",
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "behaviors": [],
+          "string": "Coin: 0",
+          "font": "fonts/Bimbo_JVE.ttf",
+          "characterSize": 20,
+          "color": {
+            "b": 0,
+            "g": 0,
+            "r": 0
+          }
         }
       ],
       "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "GroupExists"
+              },
+              "parameters": [
+                "\"saves\"",
+                "\"totalCoin\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "LireFichierExp"
+              },
+              "parameters": [
+                "\"saves\"",
+                "\"totalCoin\"",
+                "",
+                "totalCoin"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "Coin",
+                "=",
+                "\"Coin: \"+ToString(Variable(totalCoin))"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
         {
           "disabled": false,
           "folded": false,
@@ -4631,7 +4742,7 @@
       ]
     },
     {
-      "associatedLayout": "New scene",
+      "associatedLayout": "Stage one",
       "lastChangeTimeStamp": 1383152000,
       "name": "GUIManagement",
       "events": [
